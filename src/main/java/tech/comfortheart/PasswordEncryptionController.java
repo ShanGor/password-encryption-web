@@ -1,6 +1,5 @@
 package tech.comfortheart;
 
-import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +17,7 @@ public class PasswordEncryptionController {
     @PostMapping("/encrypt")
     @ResponseBody public String encrypt(@RequestBody String plainText) {
         try {
-            App.KeystoreAndCert keyInfo = App.getKeystoreAndCert();
+            DatabaseToCsvApp.KeystoreAndCert keyInfo = DatabaseToCsvApp.getKeystoreAndCert();
             return EncryptUtil.encrypt(keyInfo.getCertPath(), plainText);
         } catch (Exception e) {
             throw new RuntimeException(e);
